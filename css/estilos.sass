@@ -1,0 +1,219 @@
+/*==TEMA==*/
+/*Cores*/
+$bgmenu: #303030
+$fundo: #ECF0F1
+$cor1: #EA8AE7
+$cor2: #9B59B6
+$titulos:#8E44AD
+$texto:#5F2D67
+
+/*fontes*/
+@font-face
+	font-family: 'Yanone Kaffeesatz'
+	src: url('../fonts/yanonekaffeesatz-regular-webfont.eot')
+	src: url('../fonts/yanonekaffeesatz-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/yanonekaffeesatz-regular-webfont.woff') format('woff'), url('../fonts/yanonekaffeesatz-regular-webfont.ttf') format('truetype')
+	font-weight: normal
+	font-style: normal
+@font-face
+	font-family: 'Yanone Kaffeesatz Bold'
+	src: url('../fonts/yanonekaffeesatz-bold-webfont.eot')
+	src: url('../fonts/yanonekaffeesatz-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/yanonekaffeesatz-bold-webfont.woff') format('woff'), url('../fonts/yanonekaffeesatz-bold-webfont.ttf') format('truetype')
+@font-face
+	font-family: 'Yanone Kaffeesatz Light'
+	src: url('../fonts/yanonekaffeesatz-light-webfont.eot')
+	src: url('../fonts/yanonekaffeesatz-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/yanonekaffeesatz-light-webfont.woff') format('woff'), url('../fonts/yanonekaffeesatz-light-webfont.ttf') format('truetype')
+	font-weight: normal
+	font-style: normal
+/*layout*/
+$icons: 72px
+$icontop: -124px
+$iconshover: 63px
+$iconsactive: 126px
+#main 
+	width: 1280px
+#sidebar
+	width: 102px
+	padding: 5px 0 50px 0px
+	background-color: $bgmenu
+	float: left
+	ul
+		margin: 0
+		padding: 0
+	li a
+		display: block
+		width: 63px
+		height: 72px
+		margin: 0 auto
+		background-image: url(../img/sprite_menu.png)
+		text-indent: -9999px
+		background-position: top left
+	a.cherry
+		height: 124px
+		&:hover
+			background-position: $iconshover 0
+	a.busca
+		background-position: 0 $icontop
+		&:hover
+			background-position: $iconshover $icontop
+		&:active
+			background-position: $iconsactive $icontop
+	a.roupas
+		background-position: 0 $icontop - $icons
+		&:hover
+			background-position: $iconshover $icontop - $icons
+		&:active
+			background-position: $iconsactive $icontop - $icons
+	a.carrinho
+		background-position: 0 $icontop - ($icons*2)
+		&:hover
+			background-position: $iconshover $icontop - ($icons*2)
+		&:active
+			background-position: $iconsactive $icontop - ($icons*2)
+	a.entrega
+		background-position: 0 $icontop - ($icons*3)
+		&:hover
+			background-position: $iconshover $icontop - ($icons*3)
+		&:active
+			background-position: $iconsactive $icontop - ($icons*3)
+	a.pagamento
+		background-position: 0 $icontop - ($icons*4)
+		&:hover
+			background-position: $iconshover $icontop - ($icons*4)
+		&:active
+			background-position: $iconsactive $icontop - ($icons*4)
+	a.perfil
+		margin-top: 150px
+		background-position: 0 $icontop - ($icons*5)
+		&:hover
+			background-position: $iconshover $icontop - ($icons*5)
+		&:active
+			background-position: $iconsactive $icontop - ($icons*5)
+	
+header
+	height: 122px
+	background-color: $cor2
+	width: 100%
+header h1
+	margin: 0
+	a
+		width: 137px
+		height: 114px
+		text-indent: -9999px
+		background: url('../img/cherry.png') no-repeat
+		margin: 0
+		float: left
+		margin: 5px 0 0 23px
+
+/*estilização*/
+html, body
+	font-family: "Yanone Kaffeesatz", Arial, sans-serif
+	background-color: $fundo
+section 
+	float: left
+	min-width: 1178px
+section h2.titulo
+	font-size: 30px
+	background-color: $cor1
+	margin: 34px 0 0 25px
+	color: #fff
+	font-weight: normal
+	padding: 0 5px
+	width: 115px
+	color: $texto
+div.single, div.gallery, div.descricao
+	background-color: #FFF
+	float: left
+	margin-left: 25px
+	padding: 20px
+div.single
+	width: 210px
+	height: 360px
+	text-align: center
+	margin-top: 54px
+	img
+		display: block
+		margin-bottom: 25px
+div.produtos
+	h3,h2
+		font-weight: normal
+		font-size: 24px
+		margin: 0 0 5px 0
+		line-height: 24px
+
+	p
+		line-height: 40px
+		margin: 0 0 11px 0
+	.preco
+		color: $cor1
+		font-size: 40px
+	a
+		display: block
+		width: 160px
+		height: 50px
+		font-size: 24px
+		color: #fff
+		line-height: 50px
+		text-decoration: none
+		margin: 0 auto
+		text-align: center
+		&.add
+			background: $cor2 url(../img/icon_mais.png) 13px 15px no-repeat 
+		&.descr
+			background: $cor1 url(../img/icon_ballon.png) 13px 15px no-repeat
+div.gallery
+	clear: left
+	img
+		margin-left: 27px
+		margin-bottom: 27px
+	h2, p
+		text-align: center
+	h2
+		width: 300px
+		border-top: 1px solid #ccc
+		padding-top: 10px
+		margin: -10px auto 10px auto
+	p.preco
+		color: $cor2
+	a
+		display: inline
+		float: left
+		&.add
+			margin: 0 50px 0 70px
+div.gallery, div.descricao
+	width: 515px
+	height: 483px
+	margin-top: 30px
+	
+div.descricao
+	h3
+		font-size: 30px
+		line-height: 30px
+		color: $texto
+		margin-top: 0
+	p
+		font-family: Arial, Helvetica, sans-serif
+		font-size: 14px
+#navega
+	margin-left: 25px
+	margin-top: 28px
+	ul
+		margin: 0
+		padding: 0
+		background-color: $cor1
+	li
+		display: inline
+		float: left
+		height: 43px
+	li a
+		color: $texto
+		text-decoration: none
+		font-size: 30px
+		float: left
+		height: 43px
+		padding-right: 43px
+		padding-left: 10px
+		background: $cor1 url(../img/divisa.png) center right no-repeat
+	li a:hover
+		text-decoration: underline
+	ul li:last-child a
+		background-image: url(../img/final.png)
