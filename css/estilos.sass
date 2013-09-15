@@ -6,24 +6,21 @@ $cor1: #EA8AE7
 $cor2: #9B59B6
 $titulos:#8E44AD
 $texto:#5F2D67
+$urlfonte: '../fonts/'
 
 /*fontes*/
-@font-face
-	font-family: 'Yanone Kaffeesatz'
-	src: url('../fonts/yanonekaffeesatz-regular-webfont.eot')
-	src: url('../fonts/yanonekaffeesatz-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/yanonekaffeesatz-regular-webfont.woff') format('woff'), url('../fonts/yanonekaffeesatz-regular-webfont.ttf') format('truetype')
-	font-weight: normal
-	font-style: normal
-@font-face
-	font-family: 'Yanone Kaffeesatz Bold'
-	src: url('../fonts/yanonekaffeesatz-bold-webfont.eot')
-	src: url('../fonts/yanonekaffeesatz-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/yanonekaffeesatz-bold-webfont.woff') format('woff'), url('../fonts/yanonekaffeesatz-bold-webfont.ttf') format('truetype')
-@font-face
-	font-family: 'Yanone Kaffeesatz Light'
-	src: url('../fonts/yanonekaffeesatz-light-webfont.eot')
-	src: url('../fonts/yanonekaffeesatz-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/yanonekaffeesatz-light-webfont.woff') format('woff'), url('../fonts/yanonekaffeesatz-light-webfont.ttf') format('truetype')
-	font-weight: normal
-	font-style: normal
+@mixin fonte($name, $path, $file, $weight: normal, $style: normal)
+	@font-face
+		font-family: $name
+		src: url('#{$path}#{$file}.eot')
+		src: url('#{$path}#{$file}.eot?#iefix') format('embedded-opentype'), url('#{$path}#{$file}.woff') format('woff'), url('#{$path}#{$file}.ttf') format('truetype')
+		font-weight: $weight
+		font-style: $style
+	
+@include fonte('Yanone Kaffeesatz',$urlfonte, 'yanonekaffeesatz-regular-webfont')
+@include fonte('Yanone Kaffeesatz Bold', $urlfonte, 'yanonekaffeesatz-bold-webfont')
+@include fonte('Yanone Kaffeesatz Light', $urlfonte, 'yanonekaffeesatz-light-webfont')
+
 /*layout*/
 $icons: 72px
 $icontop: -124px
@@ -31,6 +28,7 @@ $iconshover: 63px
 $iconsactive: 126px
 #main 
 	width: 1280px
+$lista-icons: cherry busca roupas carrinho entrega pagamento perfil
 #sidebar
 	width: 102px
 	padding: 5px 0 50px 0px
@@ -46,48 +44,25 @@ $iconsactive: 126px
 		margin: 0 auto
 		background-image: url(../img/sprite_menu.png)
 		text-indent: -9999px
-		background-position: top left
 	a.cherry
 		height: 124px
-		&:hover
-			background-position: $iconshover 0
-	a.busca
-		background-position: 0 $icontop
-		&:hover
-			background-position: $iconshover $icontop
-		&:active
-			background-position: $iconsactive $icontop
-	a.roupas
-		background-position: 0 $icontop - $icons
-		&:hover
-			background-position: $iconshover $icontop - $icons
-		&:active
-			background-position: $iconsactive $icontop - $icons
-	a.carrinho
-		background-position: 0 $icontop - ($icons*2)
-		&:hover
-			background-position: $iconshover $icontop - ($icons*2)
-		&:active
-			background-position: $iconsactive $icontop - ($icons*2)
-	a.entrega
-		background-position: 0 $icontop - ($icons*3)
-		&:hover
-			background-position: $iconshover $icontop - ($icons*3)
-		&:active
-			background-position: $iconsactive $icontop - ($icons*3)
-	a.pagamento
-		background-position: 0 $icontop - ($icons*4)
-		&:hover
-			background-position: $iconshover $icontop - ($icons*4)
-		&:active
-			background-position: $iconsactive $icontop - ($icons*4)
 	a.perfil
 		margin-top: 150px
-		background-position: 0 $icontop - ($icons*5)
-		&:hover
-			background-position: $iconshover $icontop - ($icons*5)
-		&:active
-			background-position: $iconsactive $icontop - ($icons*5)
+	$icons: 0
+	$icontop: 0
+	$iconshover: 63px
+	$iconsactive: 126px
+
+	@for $i from 1 through length($lista-icons)
+		a.#{nth($lista-icons, $i)}
+			$mapv: $icontop - ($icons * ($i - 2))
+			background-position: 0 $mapv
+			&:hover
+				background-position: $iconshover $mapv
+			&:active
+				background-position: $iconsactive $mapv
+		$icontop: -124px
+		$icons: 72px
 	
 header
 	height: 122px
@@ -119,11 +94,13 @@ html, body
 	background-color: $fundo
 
 section h2.titulo
-	font-size: 30px
+	font
+		size: 30px
+		weight: normal
 	background-color: $cor1
 	margin: 34px 0 0 25px
 	color: #fff
-	font-weight: normal
+	
 	padding: 0 5px
 	width: 115px
 	color: $texto
@@ -142,8 +119,9 @@ div.single
 		margin-bottom: 25px
 div.produtos
 	h3,h2
-		font-weight: normal
-		font-size: 24px
+		font
+			weight: normal
+			size: 24px
 		margin: 0 0 5px 0
 		line-height: 24px
 
@@ -170,8 +148,7 @@ div.produtos
 div.gallery
 	clear: left
 	img
-		margin-left: 27px
-		margin-bottom: 27px
+		margin: 0 0 27px 27px
 	h2, p
 		text-align: center
 	h2
@@ -193,11 +170,9 @@ div.descricao
 		color: $texto
 		margin-top: 0
 	p
-		font-family: Arial, Helvetica, sans-serif
-		font-size: 14px
+		font: 14px Arial, Helvetica, sans-serif
 #navega
-	margin-left: 25px
-	margin-top: 28px
+	margin: 28px 0 0 25px
 	ul
 		margin: 0
 		padding: 0
@@ -212,8 +187,7 @@ div.descricao
 		font-size: 30px
 		float: left
 		height: 43px
-		padding-right: 43px
-		padding-left: 10px
+		padding: 0 43px 0 10px
 		background: $cor1 url(../img/divisa.png) center right no-repeat
 	li a:hover
 		text-decoration: underline
